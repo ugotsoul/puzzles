@@ -39,4 +39,4 @@ def primes_sieve(num):
 		else:
 			return 'all the prime divisors of ', num, ' are ', temp_primes
 
-print primes_sieve(14)
+print primes_sieve(600851475143)
