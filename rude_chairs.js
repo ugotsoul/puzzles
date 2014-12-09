@@ -24,10 +24,63 @@ List.prototype.add = function(data){
 	this.end.data = data;
 };
 
+//find a certain node at some data point
+List.prototype.find = function(data){
+	
+	var currentNode = this.start;
+
+	while (currentNode.data !== data){
+		currentNode = this.getNext(currentNode);
+	}
+
+	return currentNode;
+
+};
+
+List.prototype.delete = function(data){
+
+};
+
+List.prototype.count = function(){
+	var n = 1;
+	var currentNode = this.start;
+
+ 	while (currentNode.next !== null){
+		//console.log(current.next);
+		n++
+		currentNode = currentNode.next;
+	}
+
+	return 'List Length: '+n;
+};
+
+//traverse the list
+List.prototype.getNext = function(currentNode){
+
+ 	if (currentNode.next !== null){
+		//console.log(current.next);
+		currentNode = currentNode.next;
+		return currentNode;
+	}
+
+	else {
+		return 'End of the list.';
+	}
+
+};
+
+//insert a node at the start
+List.prototype.prepend = function(data){
+	var tempNode = this.makeNode();
+	tempNode.next = this.start;
+	this.start = tempNode;
+	tempNode.data = data;
+};
+
 var list = new List();
 
 for (var i = 1; i <= 10; i++){
 	list.add(i);
 };
 
-console.log(list.end.data);
+console.log(list.find(5));
