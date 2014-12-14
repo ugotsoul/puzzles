@@ -1,4 +1,4 @@
-//Modified linked list, from a tutorial here: http://www.i-programmer.info/programming/javascript/5328-javascript-data-structures-the-linked-list.html
+git//Modified linked list, from a tutorial here: http://www.i-programmer.info/programming/javascript/5328-javascript-data-structures-the-linked-list.html
 function List(){
 	this.start=null;
 	this.end=null;

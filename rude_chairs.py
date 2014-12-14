@@ -22,7 +22,8 @@ class LinkedList:
 		tempNode = Node(item)
 		
 		if self.head:
-			
+
+			#makes the linked list circular			
 			tempNode.next = self.head
 			
 			if self.tail:
@@ -49,7 +50,7 @@ class LinkedList:
 		counter = 1
 		currentNode = self.head
 
-		while currentNode != self.tail:
+		while currentNode.next != self.head:
 			counter +=1
 			currentNode = currentNode.next
 		return counter
@@ -63,35 +64,30 @@ class LinkedList:
 				currentNode = currentNode.next
 			else:
 				return currentNode
-
-		return data, ": Data Not found"
-
 	
 	def delete(self, data):
 
 		#find the node
 		removeNode = self.find(data)
 
-		#find the previous node
-		
+		#find the previous node	
 		refNode = self.head
 
 		for i in range(self.count()):
-			if removeNode.data != refNode.next.data:
+			if removeNode != refNode.next:
 				refNode = refNode.next
+		
+		#swap pointers
+		if removeNode == self.head:
+			self.head = removeNode.next
+			refNode.next = self.head
 
-		print 'Reference Node:', refNode.data
-		print 'Deletion node: ', refNode.next.data
-
-		#change pointers
-		if removeNode != self.tail:
-			refNode.next = removeNode.next
-			removeNode.next = None
+		elif removeNode == self.tail:
+			self.tail = removeNode.next
+			refNode.next = self.tail
+		
 		else:
 			refNode.next = removeNode.next
-			self.tail = refNode
-
-		return refNode.next.data
 
 
 def rude_chairs(num_of_chairs):
@@ -104,10 +100,16 @@ def rude_chairs(num_of_chairs):
 	currentNode = chairs.head
 	deleteNode = None
 
-	while currentNode.next:
-		pass
+	while chairs.count() > 1:
 
+		deleteNode = currentNode
 
-	
+		currentNode = currentNode.next.next
 
-print rude_chairs(100)
+		#print "Delete Chair: ", deleteNode.data
+
+		chairs.delete(deleteNode.data)
+
+	return 'Survivor is', chairs.head.data
+
+print rude_chairs(10)
